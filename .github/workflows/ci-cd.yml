@@ -74,7 +74,7 @@ jobs:
         uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - name: Deplay BICEP template
+      - name: Deploy BICEP template
         uses: azure/arm-deploy@v2
         id: deploywebapp
         with:

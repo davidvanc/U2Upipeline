@@ -18,7 +18,6 @@ jobs:
     env:
      configuration: release
     
-
     steps:
     - name: Checkout Sources
       uses: actions/checkout@v4
@@ -43,6 +42,8 @@ jobs:
     - name: Upload a Template Artifact
       uses: actions/upload-artifact@v4
       with:
+        # Added the specific name to match the download step
+        name: templates_artifact 
         path: ./templates/*
         retention-days: 30
   RG-Job:
@@ -79,12 +80,15 @@ jobs:
         id: deploywebapp
         with:
           deploymentName: create-webapp
-          subscriptionID: ${{ env.AZURE_SUBSCRIPTION }}
+          # Corrected parameter name 'subscriptionId'
+          subscriptionId: ${{ env.AZURE_SUBSCRIPTION }} 
           resourceGroupName: ${{ env.Azure_RG }}
           template: ${{ runner.temp }}/templates/webapp.bicep
-          parameters: location=${{ ENV.AZURE-LOCATION }} appName=${{ env.AZURE-WEBAPP-NAME }}
+          # Corrected variable 'env.AZURE-LOCATION'
+          parameters: location=${{ env.AZURE-LOCATION }} appName=${{ env.AZURE-WEBAPP-NAME }} 
       - name: Download Publish
-        uses: actions/download-artifact@v4
+        # Corrected repository path 'actions/download-artifact@v4'
+        uses: actions/download-artifact@v4 
         with:
           name: publish_artifact
           path: ${{ runner.temp }}/publish
@@ -94,7 +98,3 @@ jobs:
           app-name: ${{ steps.deploywebapp.outputs.webappname }}
           # app-name: ${{ env.AZURE-WEBAPP-NAME }}
           package: ${{ runner.temp }}/publish
-          
-    
-            
-      

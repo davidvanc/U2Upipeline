@@ -9,7 +9,7 @@ on:
   pull_request:
     branches: [ "main" ]
 env:
-  Azure_RG: RG3
+  Azure_RG: RG4
   Azure_SUBSCRIPTION: 2f20ec91-f8f7-4f64-8f6a-b555b7e158d7
   AZURE-LOCATION: WestEurope
 jobs:
